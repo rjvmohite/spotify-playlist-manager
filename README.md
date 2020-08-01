@@ -2,7 +2,7 @@
  
  This is a work in progress application to manage spotify playlist information.
  
- ## Try out my instance [here](http://139.59.91.119:99/)
+ ## Try out my instance [here](http://139.59.91.119:8888/)
 
 ## Installation
 
