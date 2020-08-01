@@ -4,14 +4,15 @@
   "description": "Basic examples of the Spotify authorization flows through OAuth 2",
   "version": "0.0.2",
   "scripts": {
-    "launch": "nodemon ./authorization_code/app.js"
+    "launch": "nodemon ./app.js"
   },
   "dependencies": {
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.4",
     "express": "~4.16.0",
+    "nodemon": "~2.0.4",
     "querystring": "~0.2.0",
     "request": "~2.83.0",
-    "nodemon": "~2.0.4"
+    "winston": "^3.3.3"
   }
 }

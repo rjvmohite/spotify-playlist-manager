@@ -13,9 +13,18 @@ var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var client_id = 'CLIENT_ID'; // Your client id
-var client_secret = 'CLIENT_SECRET'; // Your secret
-var redirect_uri = 'RIDIRECT_URI'; // Your redirect uri
+const logger = require('./config/logger');
+var fileLog = logger.fileLogger;
+var tokenLog = logger.tokenLogger;
+var playlistLog = logger.playlistLogger;
+
+// var client_id = 'CLIENT_ID'; // Your client id
+// var client_secret = 'CLIENT_SECRET'; // Your secret
+// var redirect_uri = 'REDIRECT_URI'; // Your redirect uri
+
+var client_id = '21a627a1ba0548e8a03eb8fc73f9a976';
+var client_secret = '7495937c5cd74da9b1482541982bd0c5';
+var redirect_uri = 'http://localhost:8888/callback';
 
 var user_href;
 var user_id;
@@ -60,19 +69,18 @@ app.get('/login', function (req, res) {
 
 app.get('/callback', function (req, res) {
 
-  // your application requests refresh and access tokens
-  // after checking the state parameter
-
   var code = req.query.code || null;
   var state = req.query.state || null;
   var storedState = req.cookies ? req.cookies[stateKey] : null;
 
   if (state === null || state !== storedState) {
+    fileLog.error('state_mismatch');
     res.redirect('/#' +
       querystring.stringify({
         error: 'state_mismatch'
       }));
   }
+
   else {
     res.clearCookie(stateKey);
 
@@ -87,17 +95,20 @@ app.get('/callback', function (req, res) {
         'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
       },
       json: true
-    };//JSON object to send with POST request to receive access_token
+    };//JSON object for below POST request
 
     // POST request to receive access_token
     request.post(authOptions, function (error, response, body) {
       if (!error && response.statusCode === 200) {
-        console.log(body);// received access_token JSON from user
+        // received access_token JSON from user
+        fileLog.info('Received tokens');
+        tokenLog.info(body);
+
 
         access_token = body.access_token;
         var refresh_token = body.refresh_token;
 
-        getDetails(access_token);
+        getUserDetails(access_token);
 
         // we pass the token to the browser to make requests from there
         res.redirect('/#' +
@@ -107,6 +118,7 @@ app.get('/callback', function (req, res) {
           }));
       }
       else {
+        fileLog.error('invalid_token');
         res.redirect('/#' +
           querystring.stringify({
             error: 'invalid_token'
@@ -116,7 +128,7 @@ app.get('/callback', function (req, res) {
   }
 });
 
-function getDetails(token) {
+function getUserDetails(token) {
 
   var options = {
     url: 'https://api.spotify.com/v1/me',
@@ -124,7 +136,7 @@ function getDetails(token) {
     json: true
   };
   request.get(options, function (error, response, body) {
-    console.log(body);
+    fileLog.info(body);
     user_href = body.href;
     user_id = body.id;
   });
@@ -155,16 +167,14 @@ app.get('/refresh_token', function (req, res) {
 });
 
 app.get('/playlists', function (req, res) {
-  console.log('Accessing Playlists');
-  // res.clearCookie(stateKey);
+  fileLog.info('Accessing Playlists');
   var options = {
     url: user_href + '/playlists',
     headers: { 'Authorization': 'Bearer ' + access_token },
     json: true
   };
   request.get(options, function (error, response, body) {
-    console.log(body);
-    // console.log(access_token);
+    playlistLog.info(body);
     res.send(body);
   });
 });
