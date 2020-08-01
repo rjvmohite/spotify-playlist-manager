@@ -1,4 +1,4 @@
- Spotify Playlist Manager with OAuth using Authorization code
+ # Spotify Playlist Manager with OAuth using Authorization code
 
 ## Refereces
 
