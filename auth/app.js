@@ -20,6 +20,7 @@ var redirect_uri = 'RIDIRECT_URI'; // Your redirect uri
 var user_href;
 var user_id;
 var access_token;
+var refresh_token;
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
@@ -95,7 +96,7 @@ app.get('/callback', function (req, res) {
         console.log(body);// received access_token JSON from user
 
         access_token = body.access_token;
-        var refresh_token = body.refresh_token;
+        refresh_token = body.refresh_token;
 
         getDetails(access_token);
 
