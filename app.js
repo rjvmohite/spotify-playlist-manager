@@ -29,6 +29,7 @@ var redirect_uri = 'http://localhost:8888/callback';
 var user_href;
 var user_id;
 var access_token;
+var refresh_token;
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
@@ -106,7 +107,7 @@ app.get('/callback', function (req, res) {
 
 
         access_token = body.access_token;
-        var refresh_token = body.refresh_token;
+        refresh_token = body.refresh_token;
 
         getUserDetails(access_token);
 

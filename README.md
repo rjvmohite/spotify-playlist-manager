@@ -1,4 +1,6 @@
  # Spotify Playlist Manager with OAuth using Authorization code
+ 
+ This is a work in progress application to manage spotify playlist information.
 
 ## Refereces
 
