@@ -18,13 +18,9 @@ var fileLog = logger.fileLogger;
 var tokenLog = logger.tokenLogger;
 var playlistLog = logger.playlistLogger;
 
-// var client_id = 'CLIENT_ID'; // Your client id
-// var client_secret = 'CLIENT_SECRET'; // Your secret
-// var redirect_uri = 'REDIRECT_URI'; // Your redirect uri
-
-var client_id = '21a627a1ba0548e8a03eb8fc73f9a976';
-var client_secret = '7495937c5cd74da9b1482541982bd0c5';
-var redirect_uri = 'http://localhost:8888/callback';
+var client_id = 'CLIENT_ID'; // Your client id
+var client_secret = 'CLIENT_SECRET'; // Your secret
+var redirect_uri = 'REDIRECT_URI'; // Your redirect uri
 
 var user_href;
 var user_id;
