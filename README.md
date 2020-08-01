@@ -2,10 +2,6 @@
  
  This is a work in progress application to manage spotify playlist information.
 
-## Refereces
-
-[Spotify Demos](https://developer.spotify.com/documentation/web-api/quick-start/)
-
 ## Installation
 
 These examples run on Node.js. On [its website](http://www.nodejs.org/download/) you can find instructions on how to install it.
@@ -27,3 +23,6 @@ In order to run the different examples, open the folder and run its `npm run lau
 
 Then, open `http://localhost:8888` in a browser.
 
+## Refereces
+
+[Spotify Demos](https://developer.spotify.com/documentation/web-api/quick-start/)
