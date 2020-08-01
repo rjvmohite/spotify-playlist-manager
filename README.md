@@ -6,8 +6,6 @@
 
 [Spotify Demos](https://developer.spotify.com/documentation/web-api/quick-start/)
 
-## To use my instance, [Click here](http://139.59.91.119:8888/) `http://139.59.91.119:8888/`
-
 ## Installation
 
 These examples run on Node.js. On [its website](http://www.nodejs.org/download/) you can find instructions on how to install it.
