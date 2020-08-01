@@ -1,6 +1,8 @@
  # Spotify Playlist Manager with OAuth using Authorization code
  
  This is a work in progress application to manage spotify playlist information.
+ 
+ ## Try out my instance [here](http://139.59.91.119:99/)
 
 ## Installation
 
